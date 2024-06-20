@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if code %}
+<a href="{% url 'delete_all_past' %}" class="btn btn-danger">Delete all history</a>
+<br/><br/><br/><br/>
+    {% for thing in code %}
+
+{{ thing.question }}<br/>
+
+<pre>
+<code class='line-numbers language-{{ thing.language }}'>
+{{ thing.code_answer }}
+</code>
+</pre>
+<a href="{% url 'delete_past' thing.id %}" class='btn btn-outline-secondary btn-sm'>Delete</a>
+
+<br/><br/><br/><br/>
+
+    {% endfor %}
+
+<!--<a href="{% url 'delete_all_past' %}" class="btn btn-danger">Delete all history</a>-->
+
+{% endif %}
+
+{% endblock %}

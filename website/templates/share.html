@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Shared Record</h1>
+
+  <p>Record ID: {{ record.id }}</p>
+  <p>Question: {{ record.question }}</p>
+  <p>Code Answer: {{ record.code_answer }}</p>
+  <p>Programming Language: {{ record.language }}</p>
+
+  <h2>Sharing Link</h2>
+  <p>Share this link with others:</p>
+  <p><a href="{{ share_url }}">Go to the shared record</a></p>
+
+  <button onclick="copyToClipboard('{{ share_url }}')">Copy Link</button>
+
+  <script>
+    function copyToClipboard(text) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Link copied to clipboard!');
+    }
+  </script>
+{% endblock %}
